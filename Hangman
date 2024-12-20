@@ -1,0 +1,42 @@
+import random
+
+print("Game : HANGMAN. \n")
+input("What is your name?  ")
+input("Have you ever played a game like this one? Yes or No:  ")
+print("Here is the hidden word: ")
+word_list = ("python", "developer", "analyst", "scientist", "programming", "pakistan", "mathematics", "karachi", "comedy", "debug", "dictionary", "poetry", "spreadsheet", "hangman", "landcruiser", "algorithm")
+random_choice = random.choice(word_list)
+#print(f"Your chosen word is: {random_choice}")
+
+length = len(random_choice)
+
+display = []
+for _ in range(length):
+  display += "_"
+print(display)
+
+
+lives = 6
+#correct_guess = False
+while lives > 0:
+  guess = str(input("Guess a letter: "))
+  #clear()
+  
+  for position in range(length):
+    letter = random_choice[position]
+    if letter == guess:
+      display[position] = letter
+      print(display)
+
+  if '_' not in display:
+    print("You won!\n" "The hidden word was", random_choice )
+    break
+  if guess not in random_choice:
+    lives -= 1
+    print("Unmatch: Attempts remaining:",lives)
+    if lives == 0:
+      print("You have come out of the limitation of attempts!!\n" "The hidden word was:", random_choice )
+      break
+
+  #print( stages( lives))
+
